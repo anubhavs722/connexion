@@ -4,6 +4,16 @@ import importlib
 import yaml
 
 
+def is_xml_mimetype(mimetype):
+    try:
+        mimetype = mimetype.split(";")[0]
+        maintype, subtype = mimetype.split('/')  # type: str, str
+    except (ValueError, AttributeError):
+        return False
+    xml = maintype == 'application' and subtype.startswith("xml")
+    return xml
+
+
 def is_form_mimetype(mimetype):
     try:
         mimetype = mimetype.split(";")[0]
