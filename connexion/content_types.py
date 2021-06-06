@@ -112,8 +112,9 @@ class XMLContentHandler(ContentHandler):
     def validate_request(self, request):
         # Don't validate, leave stream for user to read
         xml_content = request.body
-        request.xml = xml_content
-        return xmltodict.parse(xml_content)
+        data = xmltodict.parse(xml_content)
+        request.xml = data
+        return data
 
 
 class JSONContentHandler(ContentHandler):
